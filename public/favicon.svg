@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32">
+  <rect width="32" height="32" rx="8" fill="#000000" stroke="rgb(249, 115, 22)" stroke-width="2"/>
+  <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" font-family="Arial" font-weight="bold" font-size="28" fill="rgb(249, 115, 22)">.t</text>
+</svg>
