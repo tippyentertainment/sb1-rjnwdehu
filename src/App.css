@@ -1,0 +1,205 @@
+#root {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 1rem;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  #root {
+    padding: 2rem;
+  }
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.task-metadata {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  text-align: left;
+}
+
+.task-metadata-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.task-dependency-icon {
+  cursor: help;
+  transition: color 0.2s ease;
+}
+
+.task-dependency-icon:hover {
+  color: hsl(var(--primary));
+}
+
+.task-assignees {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.task-assignee-avatar {
+  border: 2px solid hsl(var(--background));
+  transition: transform 0.2s ease;
+}
+
+.task-assignee-avatar:hover {
+  transform: translateY(-2px);
+}
+
+.task-assignee-count {
+  background-color: hsl(var(--secondary));
+  color: hsl(var(--secondary-foreground));
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 0.125rem 0.375rem;
+  border-radius: 9999px;
+}
+
+.kanban-card {
+  @apply rounded-lg shadow-lg mb-4 cursor-move relative box-border;
+  color: hsl(var(--kanban-text));
+  background: #161618;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.3s ease;
+  will-change: transform, background-color;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  position: relative;
+  z-index: 2;
+  width: calc(100% - 0.75rem);
+  margin: 0.5rem 0.375rem;
+  padding: 1rem;
+  text-align: left;
+}
+
+.kanban-card .task-stats {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 0.75rem 0;
+  padding: 0 0.75rem;
+}
+
+.kanban-card .task-title {
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 0.75rem;
+  line-height: 1.4;
+  padding: 0 0.75rem;
+  text-align: left;
+}
+
+.kanban-card .task-description {
+  font-size: 0.875rem;
+  color: hsl(var(--muted-foreground));
+  margin-bottom: 0.75rem;
+  padding: 0 0.75rem;
+  text-align: left;
+}
+
+.kanban-card .task-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.75rem;
+  padding: 0 0.75rem;
+}
+
+/* Light theme specific styles */
+:root:not(.dark) .kanban-card {
+  background: #e6e6e6;
+}
+
+:root:not(.dark) .kanban-card svg,
+:root:not(.dark) .kanban-card span,
+:root:not(.dark) .task-metadata-item svg,
+:root:not(.dark) .task-metadata-item span,
+:root:not(.dark) .task-stats svg,
+:root:not(.dark) .task-stats span {
+  color: #000;
+}
+
+/* Add dots under tasks */
+.kanban-card::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: currentColor;
+  opacity: 0.5;
+}
+
+.auth-container {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.auth-button {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: 0.375rem;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.auth-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: 0.375rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.auth-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Add the new button color override */
+.t-deGdmh {
+  background-color: #f97316 !important;
+}
+
+.t-deGdmh:hover {
+  background-color: #ea580c !important;
+}

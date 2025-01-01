@@ -1,3 +1,179 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 90%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 262.1 83.3% 57.8%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 263.4 70% 50.4%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 262.1 83.3% 57.8%;
+    --radius: 0.5rem;
+    --kanban-card: 0 0% 90%;
+    --kanban-column: 225 27% 96%;
+    --kanban-text: 222.2 84% 4.9%;
+  }
+ 
+  .dark {
+    --background: 240 5.88% 10%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 263.4 70% 50.4%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 224.3 76.3% 48%;
+    --kanban-card: 0 0.94% 15.24%;
+    --kanban-column: 225 27% 16%;
+    --kanban-text: 210 40% 98%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  ::selection {
+    @apply bg-primary text-primary-foreground;
+  }
+}
+
+.kanban-column {
+  @apply rounded-lg min-h-[500px] w-[300px] flex-shrink-0 overflow-hidden;
+  background: rgb(51 51 51 / 35%);
+  color: hsl(var(--kanban-text));
+  will-change: transform;
+  position: relative;
+  z-index: 1;
+  transition: background-color 0.3s ease;
+  padding: 1rem 0.75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.chat-message {
+  @apply mb-6 animate-fade-in;
+}
+
+/* Instead of using @apply with group, we create a separate class */
+.chat-message:hover .chat-message-actions {
+  opacity: 1;
+}
+
+.chat-message-content {
+  @apply flex items-start;
+}
+
+.chat-message-body {
+  @apply flex-1;
+}
+
+.chat-message-header {
+  @apply flex items-baseline;
+}
+
+.chat-message-actions {
+  @apply ml-2 opacity-0 transition-opacity flex items-center gap-1;
+}
+
+.chat-message-attachments {
+  @apply mt-2;
+}
+
+.chat-message-reactions {
+  @apply flex gap-2 mt-2;
+}
+
+.chat-message-replies {
+  @apply mt-2 pl-4 border-l-2 border-border;
+}
+
+.kanban-card {
+  @apply rounded-lg shadow-lg mb-4 cursor-move relative box-border;
+  color: hsl(var(--kanban-text));
+  background: #161618;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.3s ease;
+  will-change: transform, background-color;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  position: relative;
+  z-index: 2;
+  width: calc(100% - 0.75rem);
+  margin: 0.5rem auto;
+  padding: 1rem;
+  text-align: left;
+}
+
+:root:not(.dark) .kanban-card {
+  background: #e6e6e6;
+}
+
+:root:not(.dark) .kanban-card svg,
+:root:not(.dark) .kanban-column svg {
+  color: #000;
+}
+
+@layer base {
+  .kanban-board {
+    @apply flex gap-6 pb-4 overflow-x-auto cursor-grab active:cursor-grabbing select-none;
+    scroll-snap-type: x proximity;
+    position: relative;
+    z-index: 1;
+    padding: 1rem;
+  }
+
+  [data-rbd-draggable-state="dragging"] {
+    position: fixed !important;
+    pointer-events: none;
+    z-index: 9999 !important;
+    transform: translate(calc(var(--drag-offset-x, 0) - 50%), calc(var(--drag-offset-y, 0) - 50%)) !important;
+    width: var(--drag-width);
+    margin: 0 !important;
+    max-width: calc(300px - 0.75rem) !important;
+  }
+}
+
+@layer base {
+  :root:not(.dark) .task-stats,
+  :root:not(.dark) .task-metadata {
+    color: #000;
+  }
+  
+  :root:not(.dark) .task-stats svg,
+  :root:not(.dark) .task-metadata svg,
+  :root:not(.dark) .task-stats span,
+  :root:not(.dark) .task-metadata span {
+    color: #000;
+  }
+}
